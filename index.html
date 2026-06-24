@@ -3,27 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard Prova Paulista</title>
+  <title>Dashboard Prova Paulista - Mogi das Cruzes</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-50 p-6">
   <div class="max-w-4xl mx-auto">
-    <h1 class="text-2xl font-bold mb-6 text-blue-900">Painel Prova Paulista - Mogi das Cruzes</h1>
+    <h1 class="text-2xl font-bold mb-6 text-blue-900">Painel de Acompanhamento - Prova Paulista</h1>
     
-    <select id="schoolSelect" class="w-full p-3 border rounded-lg shadow-sm mb-6 bg-white">
-      <option value="">Selecione uma escola...</option>
+    <select id="schoolSelect" class="w-full p-3 border rounded-lg shadow-sm mb-6 bg-white border-blue-200 focus:ring-2 focus:ring-blue-400">
+      <option value="">Selecione uma escola para analisar...</option>
     </select>
 
     <div id="displayArea" class="bg-white p-6 rounded-xl shadow-lg border border-blue-100 hidden">
-      <h2 id="schoolName" class="text-lg font-bold text-blue-800 mb-4"></h2>
+      <h2 id="schoolName" class="text-lg font-bold text-blue-800 mb-4 border-b pb-2"></h2>
       <div class="grid grid-cols-2 gap-4">
         <div class="p-4 bg-blue-50 rounded-lg">
           <p class="text-xs text-blue-600 uppercase font-bold">Participação 2026</p>
-          <p id="partValue" class="text-2xl font-bold"></p>
+          <p id="partValue" class="text-2xl font-bold text-blue-900"></p>
         </div>
         <div class="p-4 bg-green-50 rounded-lg">
           <p class="text-xs text-green-600 uppercase font-bold">Acertos 2026</p>
-          <p id="acertosValue" class="text-2xl font-bold"></p>
+          <p id="acertosValue" class="text-2xl font-bold text-green-900"></p>
         </div>
       </div>
     </div>
@@ -31,25 +31,84 @@
 
   <script>
     const schoolsData = [
-      {"name": "ADELAIDE MARIA DE BARROS PROFESSORA", "part": 97.74, "acertos": 57.74},
-      {"name": "ADHEMAR BOLINA PROFESSOR", "part": 97.29, "acertos": 42.5},
-      {"name": "ALCIDES CELESTINO FILHO VEREADOR", "part": 98.2, "acertos": 58.64},
-      {"name": "WASHINGTON LUIZ DOUTOR", "part": 97.57, "acertos": 57.15}
-      // Adicione aqui o restante das suas escolas no mesmo formato {"name": "...", "part": 0, "acertos": 0},
+      {"name": "ADELAIDE MARIA DE BARROS PROFESSORA - 924830", "part": 97.74, "acertos": 57.74},
+      {"name": "ADHEMAR BOLINA PROFESSOR - 6592", "part": 97.29, "acertos": 42.5},
+      {"name": "ALCIDES CELESTINO FILHO VEREADOR - 191255", "part": 98.2, "acertos": 58.64},
+      {"name": "ALZIRA FERNANDES SCUNGISQUI - 921063", "part": 96.5, "acertos": 43.22},
+      {"name": "AMERICO SUGAI - 6889", "part": 96.58, "acertos": 46.73},
+      {"name": "ANGELICA DE JESUS FERREIRA - 61585", "part": 96.8, "acertos": 48.44},
+      {"name": "ANTONIO MARMORA FILHO MAESTRO - 906335", "part": 99.58, "acertos": 52.49},
+      {"name": "ANTONIO OLEGARIO DOS SANTOS CARDOSO - 6890", "part": 98.29, "acertos": 48.51},
+      {"name": "APRIGIO DE OLIVEIRA - 6579", "part": 97.97, "acertos": 57.06},
+      {"name": "ARISTOTELES DE ANDRADE PROFESSOR - 6798", "part": 97.94, "acertos": 55.45},
+      {"name": "ARLINDO AQUINO DE OLIVEIRA DOUTOR - 6804", "part": 100.0, "acertos": 57.44},
+      {"name": "BENEDITO BORGES VIEIRA PROFESSOR - 6816", "part": 99.07, "acertos": 46.66},
+      {"name": "BENEDITO DE SOUZA LIMA - 6841", "part": 95.67, "acertos": 50.67},
+      {"name": "BERNARDO MURPHY PADRE - 79900", "part": 97.28, "acertos": 41.29},
+      {"name": "BRANCA BAUMANN DO AMARAL PROFESSORA - 916959", "part": 97.01, "acertos": 45.01},
+      {"name": "CAMILO FAUSTINO DE MELLO PROFESSOR - 6919", "part": 90.76, "acertos": 46.83},
+      {"name": "CID BOUCAULT PROFESSOR - 923060", "part": 85.86, "acertos": 37.87},
+      {"name": "CLAUDIO ABRAHAO PROFESSOR - 44982", "part": 92.54, "acertos": 44.41},
+      {"name": "DAGOBERTO JOSE MACHADO - 191267", "part": 94.44, "acertos": 46.68},
+      {"name": "DEODATO WERTHEIMER DOUTOR - 6865", "part": 96.65, "acertos": 51.76},
+      {"name": "DORA PERETTI DE OLIVEIRA PROFESSORA - 908514", "part": 95.5, "acertos": 50.32},
+      {"name": "ELISIARIO PINTO DE MORAIS VEREADOR - 6750", "part": 96.75, "acertos": 49.47},
+      {"name": "ENEDINA GOMES DE FREITAS PROFESSORA - 41944", "part": 91.74, "acertos": 69.17},
+      {"name": "EURYCLIDES DE JESUS ZERBINI - 916924", "part": 97.71, "acertos": 46.69},
+      {"name": "FIRMINO LADEIRA PROFESSOR - 6725", "part": 97.7, "acertos": 56.17},
+      {"name": "FRANCISCO DE SOUZA MELLO PROFESSOR - 6701", "part": 90.12, "acertos": 53.69},
+      {"name": "FRANCISCO FERREIRA LOPES - 6713", "part": 95.25, "acertos": 45.61},
+      {"name": "GABRIEL PEREIRA - 6695", "part": 93.13, "acertos": 50.77},
+      {"name": "GALDINO PINHEIRO FRANCO - 6683", "part": 97.29, "acertos": 47.32},
+      {"name": "HELENA URBANO NAGIB PROFESSORA - 906682", "part": 98.12, "acertos": 51.52},
+      {"name": "HERACLIDES BATALHA DE CAMARGO DESEMBARGADOR - 912177", "part": 98.88, "acertos": 56.05},
+      {"name": "ILSON GOMES PROFESSOR - 901945", "part": 93.51, "acertos": 45.48},
+      {"name": "IRACEMA BRASIL DE SIQUEIRA PROFESSORA - 41117", "part": 97.14, "acertos": 47.71},
+      {"name": "IRENE CAPORALI DE SOUZA PROFESSORA - 191243", "part": 95.73, "acertos": 58.45},
+      {"name": "ISAAC GRINBERG HISTORIADOR - 923977", "part": 94.94, "acertos": 41.29},
+      {"name": "ISABEL FERREIRA DA SILVA PROFESSORA BELINHA - 923072", "part": 92.75, "acertos": 42.67},
+      {"name": "JOAO CARDOSO DOS SANTOS PROFESSOR - 6671", "part": 96.69, "acertos": 48.64},
+      {"name": "JOSE AYUMAR GONCALVES DE MIRANDA PROFESSOR - 43795", "part": 92.37, "acertos": 45.57},
+      {"name": "JOSE CARLOS PRESTES PROFESSOR - 43977", "part": 96.03, "acertos": 40.91},
+      {"name": "JOSE RIBEIRO GUIMARAES - 916961", "part": 99.37, "acertos": 57.11},
+      {"name": "JOSE SANCHES JOSENDE PROFESSOR - 916948", "part": 97.55, "acertos": 41.36},
+      {"name": "JOSEPHINA NAJAR HERNANDEZ PROFESSORA - 46449", "part": 95.2, "acertos": 49.18},
+      {"name": "JOVITA FRANCO AROUCHE PROFESSORA - 910417", "part": 96.1, "acertos": 53.04},
+      {"name": "KOHEIJI ADACHI - 446312", "part": 89.98, "acertos": 49.63},
+      {"name": "LAURINDA CARDOSO MELLO FREIRE PROFESSORA - 6661", "part": 90.57, "acertos": 45.51},
+      {"name": "LEONOR DE OLIVEIRA MELLO - 6658", "part": 97.96, "acertos": 55.61},
+      {"name": "LUCINDA BASTOS PROFESSORA - 48495", "part": 94.45, "acertos": 48.78},
+      {"name": "MARIA ISABEL DOS SANTOS MELLO PROFESSORA - 6907", "part": 97.91, "acertos": 49.39},
+      {"name": "MARIA RODRIGUES GONCALVES PROFESSORA - 6836", "part": 93.77, "acertos": 50.47},
+      {"name": "NARCISO YAGUE GUIMARAES VEREADOR - 41130", "part": 95.12, "acertos": 48.97},
+      {"name": "OLGA CHAKUR FARAH PROFESSORA - 6737", "part": 96.31, "acertos": 47.79},
+      {"name": "OSMAR TEIXEIRA SERRA REV PROFESSOR - 912360", "part": 100.0, "acertos": 55.73},
+      {"name": "PAULO DE OLIVEIRA MELLO PROFESSOR - 910405", "part": 98.84, "acertos": 52.99},
+      {"name": "PAULO FERRARI MASSARO PROFESSOR - 35543", "part": 97.15, "acertos": 51.21},
+      {"name": "PAULO TAPAJOS - 912190", "part": 97.54, "acertos": 62.72},
+      {"name": "PEDRO MALOZZE - 6646", "part": 91.52, "acertos": 45.03},
+      {"name": "ROSA MARIA DE SOUZA PROFESSORA - 924192", "part": 99.44, "acertos": 58.16},
+      {"name": "RUBENS MERCADANTE DE LIMA PROFESSOR DOUTOR - 41129", "part": 97.21, "acertos": 55.65},
+      {"name": "SEBASTIAO DE CASTRO PROFESSOR - 6622", "part": 94.17, "acertos": 52.44},
+      {"name": "SENTARO TAKAOKA DOUTOR - 6610", "part": 97.86, "acertos": 49.25},
+      {"name": "SUELI OLIVEIRA SILVA MARTINS PROFESSORA - 906347", "part": 100.0, "acertos": 67.5},
+      {"name": "SYLVIA MAFRA MACHADO PROFESSORA - 41105", "part": 98.2, "acertos": 49.11},
+      {"name": "TADAO SAKAI VEREADOR - 40496", "part": 98.42, "acertos": 44.21},
+      {"name": "THIMOTEO VAN DEN BROECK FREI - 41142", "part": 97.51, "acertos": 49.81},
+      {"name": "VANIA APARECIDA CASSARA PROFESSORA - 79873", "part": 94.51, "acertos": 43.57},
+      {"name": "WASHINGTON LUIZ DOUTOR - 6920", "part": 97.57, "acertos": 57.15}
     ];
 
     const select = document.getElementById('schoolSelect');
     const displayArea = document.getElementById('displayArea');
 
-    // Preencher select
-    schoolsData.forEach(s => {
+    schoolsData.sort((a,b) => a.name.localeCompare(b.name)).forEach(s => {
       const opt = document.createElement('option');
       opt.value = s.name;
       opt.textContent = s.name;
       select.appendChild(opt);
     });
 
-    // Evento de seleção
     select.addEventListener('change', (e) => {
       const school = schoolsData.find(s => s.name === e.target.value);
       if (school) {
