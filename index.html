@@ -7,15 +7,15 @@
   
   <script src="https://cdn.tailwindcss.com"></script>
   
-  <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
-  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
   
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 </head>
 <body class="bg-gray-50">
   <div id="root"></div>
 
-  <script type="text/babel">
+  <script type="text/babel" data-presets="react">
     const { useState, useMemo } = React;
 
     // ----- ÍCONES INLINE -----
@@ -34,7 +34,7 @@
       School: () => <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 22v-4a2 2 0 1 0-4 0v4"/><path d="m18 10 4 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-8l4-2"/><path d="M18 5v17"/><path d="m4 6 8-4 8 4"/><path d="M6 5v17"/><circle cx="12" cy="9" r="2"/></svg>
     };
 
-    // ----- DADOS -----
+    // ----- DADOS (Mantidos conforme sua instrução) -----
     const schoolsData = [
       {"name": "ADELAIDE MARIA DE BARROS PROFESSORA - 924830", "metrics": {"participacao": {"2025": 98.08, "2026": 97.74}, "acertos": {"2025": 58.25, "2026": 57.74}}, "subjects": {"PORT": {"2025": 59.67, "2026": 62.7}, "MAT": {"2025": 55.26, "2026": 50.41}, "HIS": {"2025": 47.99, "2026": 59.69}, "GEO": {"2025": 54.12, "2026": 61.13}, "BIO": {"2025": 79.11, "2026": 54.81}, "QUI": {"2025": 70.89, "2026": 51.85}, "ING": {"2025": 62.15, "2026": 65.68}, "CIE": {"2025": 57.25, "2026": 53.56}, "FIS": {"2025": 73.94, "2026": 40.22}}}, 
       {"name": "ADHEMAR BOLINA PROFESSOR - 6592", "metrics": {"participacao": {"2025": 93.34, "2026": 97.29}, "acertos": {"2025": 35.34, "2026": 42.5}}, "subjects": {"PORT": {"2025": 38.96, "2026": 50.39}, "MAT": {"2025": 31.67, "2026": 34.92}, "HIS": {"2025": 32.38, "2026": 42.04}, "GEO": {"2025": 38.4, "2026": 46.18}, "BIO": {"2025": 38.98, "2026": 34.43}, "QUI": {"2025": 33.61, "2026": 30.28}, "ING": {"2025": 39.38, "2026": 46.72}, "CIE": {"2025": 37.26, "2026": 42.17}, "FIS": {"2025": 31.69, "2026": 29.1}}}, 
@@ -148,7 +148,7 @@
       if (current == null || previous == null) return <Icons.Minus />;
       const diff = current - previous;
       if (Math.abs(diff) < 0.1) return <span className="text-gray-400"><Icons.Minus /></span>;
-      
+       
       if (diff > 0) {
         return (
           <div className="flex items-center text-green-600 bg-green-50 px-2 py-1 rounded-full text-xs font-bold">
@@ -157,7 +157,7 @@
           </div>
         );
       }
-      
+       
       return (
         <div className="flex items-center text-red-600 bg-red-50 px-2 py-1 rounded-full text-xs font-bold">
           <span className="mr-1"><Icons.TrendingDown /></span>
@@ -201,7 +201,7 @@
                   </div>
                 </div>
               </div>
-              
+               
               {/* Menu Suspenso */}
               <div className="relative w-full md:w-[28rem]">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400">
@@ -237,7 +237,7 @@
                   <span className="text-blue-700"><Icons.Users /></span>
                   <h2 className="text-2xl font-bold text-gray-800">Visão Global da Rede</h2>
                 </div>
-                
+                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 flex items-center justify-between hover:shadow-md transition-shadow">
                     <div>
@@ -295,7 +295,7 @@
                   <div className="bg-gray-800 px-6 py-4 border-b border-gray-200">
                     <h2 className="text-xl font-bold text-white">{selectedSchool.name}</h2>
                   </div>
-                  
+                   
                   <div className="p-6">
                     <h3 className="text-lg font-semibold text-gray-700 mb-4 border-b pb-2">Indicadores Gerais da Escola</h3>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
@@ -328,7 +328,7 @@
                         const diff = (data["2026"] != null && data["2025"] != null) ? data["2026"] - data["2025"] : 0;
                         const colorClass = getSubjectColor(diff);
                         const isBelowGoal = data["2026"] != null && data["2026"] < 50.0;
-                        
+                         
                         return (
                           <div key={code} className={`p-4 rounded-lg border flex flex-col justify-between ${colorClass} transition-colors`}>
                             <div>
@@ -369,7 +369,7 @@
           {/* Footer */}
           <footer className="w-full bg-white border-t border-gray-200 py-6 shrink-0 mt-auto">
             <div className="max-w-6xl mx-auto px-4 text-center">
-              <p className="text-gray-600 font-medium">Desenvolvido para Gestão Pedagógica</p>
+              <p className="text-gray-600 font-medium">Desenvolvido por Katsusuke Yamazaki Filho</p>
               <p className="text-gray-400 text-xs mt-1">
                 &copy; {new Date().getFullYear()} - Todos os direitos reservados.<br className="sm:hidden" /> Uso exclusivo para análise de dados e formulação de estratégias pedagógicas.
               </p>
