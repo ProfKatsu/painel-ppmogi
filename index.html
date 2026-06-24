@@ -1,6 +1,51 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel Prova Paulista</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react.development.js"></script>
+    
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body class="bg-gray-100">
+
+    <div id="root"></div>
+
+    <script type="text/babel" data-presets="react">
+        // Extraindo Hooks do objeto React global
+        const { useState, useEffect } = React;
+
+        function App() {
+            // Seus dados aqui (Certifique-se de não usar 'import' neste bloco)
+            const [dados, setDados] = useState("Carregando Painel...");
+
+            useEffect(() => {
+                // Simulação de carregamento ou lógica inicial
+                setDados("Painel Prova Paulista - Mogi das Cruzes");
+            }, []);
+
+            return (
+                <div className="min-h-screen flex flex-col items-center justify-center p-4">
+                    <h1 className="text-3xl font-bold text-blue-800">{dados}</h1>
+                    <p className="mt-4 text-gray-600">O sistema está operando corretamente.</p>
+                </div>
+            );
+        }
+
+        // Renderização no elemento root
+        const container = document.getElementById('root');
+        const root = ReactDOM.createRoot(container);
+        root.render(<App />);
+    </script>
+</body>
+</html><!DOCTYPE html>
+<html lang="pt-BR">
+<head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dashboard Prova Paulista - Mogi das Cruzes</title>
